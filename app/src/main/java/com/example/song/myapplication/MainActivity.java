@@ -28,17 +28,13 @@ public class MainActivity extends AppCompatActivity {
         String url =   binding.getMessage().getMessage();
 
        final Intent intent = new Intent(this, DisplayMessageActivity.class);
-       HttpGetAsyncTask h = new HttpGetAsyncTask(new JSONResponse() {
-           @Override
-           public void onResponse(JSONObject response) {
-
+       HttpGetAsyncTask h = new HttpGetAsyncTask((response) -> {
 //       EditText editText = (EditText) findViewById(R.id.editText);
 //        String message = editText.getText().toString();
 
               intent.putExtra(EXTRA_MESSAGE,response.toString());
               startActivity(intent);
 
-           }
         });
         h.execute(url);
     }
